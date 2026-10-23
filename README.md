@@ -6,9 +6,10 @@ dedicated memory about 70 to 80 seconds after the last request. See
 
 ## Fixes that worked here
 
-1. **Dummy display plug, with its display active (extended) in Windows.** The model stayed on the card for a full
-   6 min 18 s with no requests (run G). A plug that was attached but disabled in Windows did not help (runs A, C, F).
-2. **No plug: a one-token request every 5 seconds.** The model stayed on the card in both runs (B, E).
+1. **Plug it into a display. 
+2. **Dummy display plug, with its display active (extended) in Windows. A disabled plug will not work in Windows set to whatever
+   - Amazon for example 'DisplayPort dummy plug' < $10 fix
+4. **No plug: a one-token request every 5 seconds.**  Use a small script that keeps it  alive
 
 ```powershell
 .\keepalive.ps1 -Port 8084      # llama-server must be running; -IntervalSec to change
