@@ -1,0 +1,29 @@
+server healthy after ~9s
+mode: NO keepalive (idle)
+14:18:53  freeRAM 14.2  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.47 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:19:05  freeRAM 14.4  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.46 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:19:18  freeRAM 14.4  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.46 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:19:30  freeRAM 14.4  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.45 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:19:42  freeRAM 14.4  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.45 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:19:54  freeRAM 14.4  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.45 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:20:06  freeRAM 11.8  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.45 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:20:18  freeRAM 12.2  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.46 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:20:30  freeRAM 12.4  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.45 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:20:42  freeRAM 12.8  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.45 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:20:54  freeRAM 12.8  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.45 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:21:06  freeRAM 13.8  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.46 sh 0.13 | 0x00012e: ded 0.00 sh 0.00
+14:21:18  freeRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.46 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:21:30  freeRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.44 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:21:42  freeRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.44 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:21:54  freeRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.44 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:22:06  freeRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.45 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:22:19  freeRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.45 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:22:31  freeRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.45 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:22:43  freeRAM 15.8  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.46 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:22:55  freeRAM 15.8  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.46 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:23:07  freeRAM 15.8  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.46 sh 0.12 | 0x00012e: ded 0.00 sh 0.00
+14:23:19  freeRAM 15.7  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.50 sh 0.14 | 0x00012e: ded 0.00 sh 0.00
+14:23:31  freeRAM 15.8  | 0x00012e: ded 3.03 sh 0.01 | 0x0000fd: ded 1.46 sh 0.14 | 0x00012e: ded 0.00 sh 0.00
+done (server left running)
+
+[exited with code 0]

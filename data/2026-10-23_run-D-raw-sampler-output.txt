@@ -1,0 +1,41 @@
+screens at start: \\.\DISPLAY1 5120x1440; \\.\DISPLAY5 800x600
+server healthy after ~0s
+mode: NO keepalive (idle)
+14:35:20  availRAM 15.9  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.48 sh 0.13 | 0x00012e: ded 0
+14:35:28  availRAM 15.9  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.48 sh 0.13 | 0x00012e: ded 0
+14:35:36  availRAM 15.9  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.48 sh 0.13 | 0x00012e: ded 0
+14:35:44  availRAM 15.9  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.48 sh 0.13 | 0x00012e: ded 0
+14:35:52  availRAM 15.9  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.48 sh 0.13 | 0x00012e: ded 0
+14:36:00  availRAM 15.9  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.48 sh 0.13 | 0x00012e: ded 0
+14:36:08  availRAM 15.9  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.48 sh 0.13 | 0x00012e: ded 0
+14:36:16  availRAM 15.9  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.48 sh 0.09 | 0x00012e: ded 0
+14:36:24  availRAM 16.0  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.48 sh 0.09 | 0x00012e: ded 0
+14:36:32  availRAM 15.8  | 0x00012e: ded 3.31 sh 0.01 | 0x0000fd: ded 1.50 sh 0.13 | 0x00012e: ded 0
+14:36:40  availRAM 15.8  | 0x00012e: ded 3.25 sh 0.01 | 0x0000fd: ded 1.49 sh 0.12 | 0x00012e: ded 0
+14:36:48  availRAM 15.9  | 0x00012e: ded 3.22 sh 0.01 | 0x0000fd: ded 1.46 sh 0.12 | 0x00012e: ded 0
+14:36:57  availRAM 15.9  | 0x00012e: ded 3.22 sh 0.01 | 0x0000fd: ded 1.45 sh 0.12 | 0x00012e: ded 0
+14:37:05  availRAM 15.8  | 0x00012e: ded 3.22 sh 0.01 | 0x0000fd: ded 1.45 sh 0.12 | 0x00012e: ded 0
+14:37:13  availRAM 15.9  | 0x00012e: ded 3.22 sh 0.01 | 0x0000fd: ded 1.45 sh 0.12 | 0x00012e: ded 0
+14:37:21  availRAM 15.9  | 0x00012e: ded 3.22 sh 0.01 | 0x0000fd: ded 1.45 sh 0.12 | 0x00012e: ded 0
+14:37:29  availRAM 15.8  | 0x00012e: ded 3.22 sh 0.01 | 0x0000fd: ded 1.48 sh 0.12 | 0x00012e: ded 0
+14:37:37  availRAM 15.9  | 0x00012e: ded 3.22 sh 0.01 | 0x0000fd: ded 1.46 sh 0.13 | 0x00012e: ded 0
+14:37:45  availRAM 16.0  | 0x00012e: ded 3.22 sh 0.01 | 0x0000fd: ded 1.44 sh 0.13 | 0x00012e: ded 0
+14:37:53  availRAM 13.1  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.61 sh 0.13 | 0x00012e: ded 0
+14:38:01  availRAM 13.4  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.63 sh 0.13 | 0x00012e: ded 0
+14:38:09  availRAM 13.5  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.57 sh 0.13 | 0x00012e: ded 0
+14:38:17  availRAM 13.8  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.64 sh 0.13 | 0x00012e: ded 0
+14:38:25  availRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.70 sh 0.13 | 0x00012e: ded 0
+14:38:33  availRAM 14.4  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.59 sh 0.13 | 0x00012e: ded 0
+14:38:41  availRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.54 sh 0.13 | 0x00012e: ded 0
+14:38:49  availRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.44 sh 0.12 | 0x00012e: ded 0
+14:38:57  availRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.44 sh 0.13 | 0x00012e: ded 0
+14:39:05  availRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.44 sh 0.13 | 0x00012e: ded 0
+14:39:13  availRAM 14.3  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.44 sh 0.10 | 0x00012e: ded 0
+14:39:21  availRAM 14.2  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.57 sh 0.10 | 0x00012e: ded 0
+14:39:29  availRAM 14.2  | 0x00012e: ded 0.00 sh 0.01 | 0x0000fd: ded 1.45 sh 0.10 | 0x00012e: ded 0
+14:39:37  availRAM 14.2  | 0x00012e: ded 0.05 sh 0.01 | 0x0000fd: ded 1.51 sh 0.10 | 0x00012e: ded 0
+14:39:45  availRAM 14.1  | 0x00012e: ded 0.05 sh 0.01 | 0x0000fd: ded 1.52 sh 0.10 | 0x00012e: ded 0
+14:39:53  availRAM 14.1  | 0x00012e: ded 0.05 sh 0.01 | 0x0000fd: ded 1.52 sh 0.10 | 0x00012e: ded 0
+14:40:01  availRAM 14.1  | 0x00012e: ded 0.05 sh 0.01 | 0x0000fd: ded 1.43 sh 0.10 | 0x00012e: ded 0
+done (server left running)
+screens at end: \\.\DISPLAY1 5120x1440; \\.\DISPLAY5 800x600
