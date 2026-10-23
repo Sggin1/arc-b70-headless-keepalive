@@ -82,13 +82,26 @@ samplers overlapped, so use only the lines before that for run A.
 - Whether the offloaded model still answers correctly and how slowly was not measured.
 - Not an Intel statement. This is one user's observation.
 
-## Workaround
+## Workarounds
+
+Two options, with different evidence behind them.
+
+**1. A dummy display plug on the Arc, with its display active in Windows.**
+This is the workaround reported in IGCIT #1593: with the plug attached and left in use, the card kept its
+dedicated memory. In this repo's data it is only a hint (run D, display state not logged continuously).
+One observation from these runs: with the plug attached but its display disabled in Windows (runs A, C and F),
+the model still left the card. So a plug that is merely attached may not be enough; the display appeared to
+need to be active (extended) in Windows. Only one machine, so treat that as a lead.
+
+**2. No plug: send the server a small request on a timer.**
 
 ```powershell
 .\keepalive.ps1 -Port 8084          # a request every 5 s; -IntervalSec to change
 ```
 
-The 5-second interval is not tuned. 3 or 10 seconds were not compared. The server must be running.
+Held the model on the card in both runs where it was used (B and E). The 5-second interval is not tuned;
+3 or 10 seconds were not compared. The server must be running. This was tested with the plug attached and
+its display disabled, not with the plug physically removed.
 
 ## Reproduce
 
