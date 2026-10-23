@@ -51,3 +51,5 @@ Notes: the port is fixed in the command, so change it if your server's port chan
 the script; end `powershell.exe` in Task Manager, or have your stop script do it. Launching it this way was not tested.
 
 **C. Ask an AI agent** to add `keepalive.ps1` to your launch script, using the same port as your `llama-server`.
+
+Before you run anything, see [SAFETY.md](SAFETY.md).
