@@ -30,8 +30,6 @@ running on `127.0.0.1` with no API key. Other servers were not tested.
 powershell -ExecutionPolicy Bypass -File .\keepalive.ps1 -Port 8084
 ```
 
-5) 
-
 It prints one line and then stays quiet unless a request fails. Leave the window open while you use the model; press
 Ctrl+C or close the window to stop. `-IntervalSec 10` changes the 5-second default. If Windows blocks a downloaded
 copy, run `Unblock-File .\keepalive.ps1` first.
