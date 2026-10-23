@@ -1,4 +1,4 @@
-# Arc Pro B70 with no active display: keeping the model on the card
+# Arc Pro B70 with no active display (Headless): keeping the model on the card
 
 **Problem:** an Arc Pro B70 used only for compute (no display active on it) lets a loaded model fall out of its
 dedicated memory about 70 to 80 seconds after the last request. See
