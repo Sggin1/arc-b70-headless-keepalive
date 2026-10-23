@@ -1,22 +1,24 @@
-# Arc Pro B70: model leaves VRAM when no display is active, and a small periodic request prevents it
+# Arc Pro B70 with no active display: keeping the model on the card
 
-A snapshot from one Windows machine, October 2026. Small sample, single machine. Read the
-"What this does not show" section before relying on any of it.
+**Problem:** an Arc Pro B70 used only for compute (no active display on it) lets a loaded model fall out
+of its dedicated memory about 70 to 80 seconds after the last request. See
+[IGCIT #1593](https://github.com/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/1593).
 
-Related report: [IGCIT #1593](https://github.com/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/1593)
-("Arc Pro B70 headless: no display dongle offloads into system RAM").
+**Two fixes that worked on this machine:**
 
-## Summary
+1. **Dummy display plug on the Arc, with its display active (extended) in Windows.** Model stayed on the
+   card for a full 6 min 18 s with no requests (run G). A plug that is attached but disabled in Windows did
+   not help (runs A, C, F).
+2. **No plug: a one-token request every 5 seconds.** Held the model on the card in both runs (B, E).
 
-With an Intel Arc Pro B70 used only as a compute device (llama.cpp, Vulkan) and no active
-display, the model's dedicated GPU memory dropped to zero about 70 to 80 seconds after the
-last request (or after load, if no request was sent), and system RAM headroom fell by roughly the model's size at the same moment.
-Sending the server a one-token request every 5 seconds kept the model on the card for the
-whole run, twice. With an extended display active on the Arc and no requests at all, the model
-stayed on the card for a full 6 minutes 18 seconds in one fully logged run (G), and for about 80
-seconds in an earlier partly logged run (D) before the display was turned off.
+   ```powershell
+   .\keepalive.ps1 -Port 8084          # -IntervalSec to change; the llama-server must be running
+   ```
 
-This is an observation of the counters below, not a root-cause analysis.
+The repo author reports using an earlier version of this approach for several weeks (a report, not measured
+here). That original script was lost; `keepalive.ps1` here is a rewrite, tested only in runs B and E below.
+The data below is a short controlled test: one machine, one 4B model, driver 32.0.101.9150, single runs. Details and limits
+follow. This is one user's observation, not an Intel statement and not a root-cause analysis.
 
 ## Setup (all values read from the machine)
 
@@ -84,27 +86,12 @@ samplers overlapped, so use only the lines before that for run A.
 - Whether the offloaded model still answers correctly and how slowly was not measured.
 - Not an Intel statement. This is one user's observation.
 
-## Workarounds
+## Notes on the two fixes
 
-Two options, with different evidence behind them.
-
-**1. A dummy display plug on the Arc, with its display active in Windows.**
-This is the workaround reported in IGCIT #1593: with the plug attached and left in use, the card kept its
-dedicated memory. In this repo's data it held in run G (display active and logged on every sample, no
-nudge, 6 min 18 s, one run on one machine) and was hinted by run D.
-One observation from these runs: with the plug attached but its display disabled in Windows (runs A, C and F),
-the model still left the card. So a plug that is merely attached may not be enough; the display appeared to
-need to be active (extended) in Windows. Only one machine, so treat that as a lead.
-
-**2. No plug: send the server a small request on a timer.**
-
-```powershell
-.\keepalive.ps1 -Port 8084          # a request every 5 s; -IntervalSec to change
-```
-
-Held the model on the card in both runs where it was used (B and E). The 5-second interval is not tuned;
-3 or 10 seconds were not compared. The server must be running. This was tested with the plug attached and
-its display disabled, not with the plug physically removed.
+- Plug: this is also the workaround reported in IGCIT #1593. The "display must be active, not just plugged in"
+  point comes from runs A, C, F vs G on one machine, so treat it as a lead.
+- Script: the 5-second interval is not tuned; 3 or 10 seconds were not compared. It was tested with the plug
+  attached and its display disabled, not with the plug physically removed.
 
 ## Reproduce
 
@@ -123,9 +110,8 @@ available RAM drops below 5 GB.
 | --- | --- |
 | `keepalive.ps1` | The periodic request |
 | `watch_arc.ps1` | The sampler (also logs the Windows screen list per sample) |
-| `data/` | Raw sampler output for runs A, B (partial) and D |
+| `data/` | Raw sampler output for runs A, B (partial), D and G |
 
 ## Status
 
-Snapshot, 2026-10-23. To do: repeat with the plug physically removed, a larger model, more repeats,
-and log the display state on every sample (the current `watch_arc.ps1` does).
+Snapshot, 2026-10-23. Not yet done: repeat with the plug physically removed, a larger model, more repeats.
