@@ -12,8 +12,9 @@ With an Intel Arc Pro B70 used only as a compute device (llama.cpp, Vulkan) and 
 display, the model's dedicated GPU memory dropped to zero about 70 to 80 seconds after the
 last request (or after load, if no request was sent), and system RAM headroom fell by roughly the model's size at the same moment.
 Sending the server a one-token request every 5 seconds kept the model on the card for the
-whole run, twice. With an extended display active on the Arc, the model stayed on the card
-for the duration it was active in one run.
+whole run, twice. With an extended display active on the Arc and no requests at all, the model
+stayed on the card for a full 6 minutes 18 seconds in one fully logged run (G), and for about 80
+seconds in an earlier partly logged run (D) before the display was turned off.
 
 This is an observation of the counters below, not a root-cause analysis.
 
@@ -59,6 +60,7 @@ not in the Windows desktop when checked.
 | D | no | on at start, off by 14:37:26, on again by 14:40:01 | held about 80 s with the display on; dropped at 14:37:53, about 73 s after the dip in memory that coincided with the display being turned off |
 | E | yes | off at start and end | held at 3.07 GB for the whole run, 4 min 40 s |
 | F | no (nudge from E stopped) | off | dropped to 0.00 GB about 70 to 75 s after the last nudge |
+| G | no | ON the whole run, logged on every sample (`DISPLAY5` 800x600 extended onto the Arc) | fresh load, then held at 3.31 to 3.32 GB for the entire 6 min 18 s run (14:54:58 to 15:01:16); no request was sent after the health check. Log: `data/2026-10-23_run-G-display-on-no-nudge.log` |
 
 Raw sampler output that exists as files is in `data/`. Runs B (full), C, E and F were seen in live
 session output and are summarised here, not saved raw. `data/2026-10-23_runs-A-and-B-raw-sampler-output.txt`
@@ -69,7 +71,7 @@ samplers overlapped, so use only the lines before that for run A.
 
 - Plug removed. Every run had the dummy plug attached; only the Windows display state varied.
   The condition in IGCIT #1593 (no plug) is untested here.
-- Run D's display state was not logged continuously. It was observed on, then off, then on. Treat
+- Run D's display state was not logged continuously (observed on, then off, then on); only run G logged it on every sample. Treat
   the display-related reading as a hint, not a measurement.
 - One small model (4B, 2.5 GB). A 27B or 32 GB-class model was not tried, because the spill fills
   system RAM on a 32 GB machine.
@@ -88,7 +90,8 @@ Two options, with different evidence behind them.
 
 **1. A dummy display plug on the Arc, with its display active in Windows.**
 This is the workaround reported in IGCIT #1593: with the plug attached and left in use, the card kept its
-dedicated memory. In this repo's data it is only a hint (run D, display state not logged continuously).
+dedicated memory. In this repo's data it held in run G (display active and logged on every sample, no
+nudge, 6 min 18 s, one run on one machine) and was hinted by run D.
 One observation from these runs: with the plug attached but its display disabled in Windows (runs A, C and F),
 the model still left the card. So a plug that is merely attached may not be enough; the display appeared to
 need to be active (extended) in Windows. Only one machine, so treat that as a lead.
