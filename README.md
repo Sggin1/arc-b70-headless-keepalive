@@ -1,61 +1,37 @@
 # Arc Pro B70 with no active display: keeping the model on the card
 
-**Problem:** an Arc Pro B70 used only for compute (no active display on it) lets a loaded model fall out of its
+**Problem:** an Arc Pro B70 used only for compute (no display active on it) lets a loaded model fall out of its
 dedicated memory about 70 to 80 seconds after the last request. See
 [IGCIT #1593](https://github.com/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/1593).
 
-## Fixes that worked here
+## Solutions
 
-1. **Plug it into a display. 
-2. **Dummy display plug, with its display active (extended) in Windows. A disabled plug will not work in Windows set to whatever
-   - Amazon for example 'DisplayPort dummy plug' < $10 fix
-4. **No plug: a one-token request every 5 seconds.**  Use a small script that keeps it  alive
+1. **Plug a monitor into the Arc.**
+2. **Dummy display plug, with its display active (extended) in Windows.** Search "DisplayPort dummy plug" (the
+   author's figure: under $10; check the current price). A plug that is attached but disabled in Windows did not help.
+3. **No plug: run the small script `keepalive.ps1`,** which sends the model server a one-token request every 5 seconds.
 
-```powershell
-.\keepalive.ps1 -Port 8084      # llama-server must be running; -IntervalSec to change
-```
+Worked on one Windows machine with one small model; details and limits are in [TESTS.md](TESTS.md). The author reports
+using an earlier version of the script for several weeks; that original was lost and `keepalive.ps1` is a rewrite.
 
-The author reports using an earlier version of this script for several weeks (a report, not measured here). That
-original was lost; `keepalive.ps1` is a rewrite, tested only in runs B and E below.
+## How to run
 
-## Test setup
+**Dummy plug:** plug it into one of the Arc's DisplayPort outputs. In Windows open Settings > System > Display, select
+the new display, and set "Multiple displays" to **Extend these displays**. A low resolution is fine. Don't leave it
+disabled.
 
-Windows 10 22H2 (19045.7807), i9-12900K, ASUS PRIME Z790-V WIFI, 31.8 GB RAM. Arc Pro B70 on driver 32.0.101.9150
-(compute only); RTX 5060 Ti drives the desktop. llama.cpp `llama-server` build 10930 (Vulkan), model
-Jan-v3_5-4B-Q4_K_M (2.5 GB), flags `-ngl 99 --device Vulkan1 -c 4096`. A dummy plug was attached to the Arc in every run.
+**Script.** Needs Windows PowerShell 5.1 (built in; PowerShell 7 not tested) and a llama.cpp `llama-server` already
+running on `127.0.0.1` with no API key. Other servers were not tested.
 
-## Results
-
-Sampled every 5 s by `watch_arc.ps1` (Arc dedicated memory, available RAM, Windows screen list).
-
-| Run | Nudge | Extended display | Result |
-| --- | --- | --- | --- |
-| A | no | off | 3.03 GB to 0.00 GB about 70 to 80 s after load |
-| B | yes | off | held at 3.03 GB, 4 min 41 s |
-| C | no | off | dropped about 77 s after the last request |
-| D | no | on, then off (partly logged) | held about 80 s with display on; dropped about 73 s after it went off |
-| E | yes | off | held at 3.07 GB, 4 min 40 s |
-| F | no | off | dropped about 70 to 75 s after the last nudge |
-| G | no | on, logged every sample | held at 3.32 GB for the full 6 min 18 s |
-
-## Limits
-
-- One machine, one small model, one driver, single runs. Not an Intel statement or a root-cause analysis.
-- The plug was never physically removed. The tests compare the plug's display active vs disabled in Windows.
-- A larger model was not tried (the spill fills system RAM on a 32 GB machine).
-- "Shared usage" never rose, so where the memory goes is inferred: dedicated memory falls to zero as available RAM
-  falls by about the model's size.
-- Runs B (full), C, E and F were seen in live output and are not saved as raw logs. In
-  `data/2026-10-23_runs-A-and-B-raw-sampler-output.txt`, only lines before 14:22:43 are run A; the rest is run B's server.
-- Not measured: whether the offloaded model still answers correctly, the 5 s interval vs 3 s or 10 s.
-
-## Files
-
-`keepalive.ps1` (the periodic request), `watch_arc.ps1` (the sampler), `data/` (raw sampler output for A, B (partial), D, G).
+1. Start your model with `llama-server` as usual and note the port (for example `--port 8084`).
+2. Open a second terminal: press Start, type `PowerShell`, press Enter.
+3. Go to the folder with the script, for example `cd C:\path\to\arc-b70-headless-keepalive`.
+4. Run it with the same port:
 
 ```powershell
-.\watch_arc.ps1 -Exe <llama-server.exe> -Model <model.gguf> -Device Vulkan1 -Port 8084 `
-                -LogFile .\data\run.log [-Keepalive] [-Samples 36] [-Every 5]
+powershell -ExecutionPolicy Bypass -File .\keepalive.ps1 -Port 8084
 ```
 
-Snapshot, 2026-10-23.
+It prints one line and then stays quiet unless a request fails. Leave the window open while you use the model; press
+Ctrl+C or close the window to stop. `-IntervalSec 10` changes the 5-second default. If Windows blocks a downloaded
+copy, run `Unblock-File .\keepalive.ps1` first.
