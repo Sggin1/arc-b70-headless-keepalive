@@ -35,3 +35,21 @@ powershell -ExecutionPolicy Bypass -File .\keepalive.ps1 -Port 8084
 It prints one line and then stays quiet unless a request fails. Leave the window open while you use the model; press
 Ctrl+C or close the window to stop. `-IntervalSec 10` changes the 5-second default. If Windows blocks a downloaded
 copy, run `Unblock-File .\keepalive.ps1` first.
+
+## Auto-start
+
+The script only needs the port, and it keeps retrying until the server is up, so it can start at the same time as your model.
+
+**A. Add it to your launch script.** After the line that starts `llama-server`, add (use the same port as the server):
+
+```powershell
+Start-Process powershell -WindowStyle Hidden -ArgumentList "-ExecutionPolicy","Bypass","-File","C:\path\to\keepalive.ps1","-Port","8084"
+```
+
+**B. Task Scheduler** (if you start the server some other way): trigger "At log on", action `powershell.exe`, arguments
+`-WindowStyle Hidden -ExecutionPolicy Bypass -File C:\path\to\keepalive.ps1 -Port 8084`.
+
+Notes: the port is fixed in the command, so change it if your server's port changes. Closing the server does not stop
+the script; end `powershell.exe` in Task Manager, or have your stop script do it. Launching it this way was not tested.
+
+**C. Ask an AI agent** to add `keepalive.ps1` to your launch script, using the same port as your `llama-server`.
