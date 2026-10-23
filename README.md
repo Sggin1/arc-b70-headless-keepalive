@@ -7,8 +7,7 @@ dedicated memory about 70 to 80 seconds after the last request. See
 ## Solutions
 
 1. **Plug a monitor into the Arc.**
-2. **Dummy display plug, with its display active (extended) in Windows.** Search "DisplayPort dummy plug" (the
-   author's figure: under $10; check the current price). A plug that is attached but disabled in Windows did not help.
+2. **Dummy display plug, with its display active (extended) in Windows.** Search "DisplayPort dummy plug" ,  under $10.
 3. **No plug: run the small script `keepalive.ps1`,** which sends the model server a one-token request every 5 seconds.
 
 Worked on one Windows machine with one small model; details and limits are in [TESTS.md](TESTS.md). The author reports
@@ -17,8 +16,7 @@ using an earlier version of the script for several weeks; that original was lost
 ## How to run
 
 **Dummy plug:** plug it into one of the Arc's DisplayPort outputs. In Windows open Settings > System > Display, select
-the new display, and set "Multiple displays" to **Extend these displays**. A low resolution is fine. Don't leave it
-disabled.
+the new display, and set "Multiple displays" to **Extend these displays**. A low resolution is fine and enable.
 
 **Script.** Needs Windows PowerShell 5.1 (built in; PowerShell 7 not tested) and a llama.cpp `llama-server` already
 running on `127.0.0.1` with no API key. Other servers were not tested.
@@ -31,6 +29,8 @@ running on `127.0.0.1` with no API key. Other servers were not tested.
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\keepalive.ps1 -Port 8084
 ```
+
+5) 
 
 It prints one line and then stays quiet unless a request fails. Leave the window open while you use the model; press
 Ctrl+C or close the window to stop. `-IntervalSec 10` changes the 5-second default. If Windows blocks a downloaded
